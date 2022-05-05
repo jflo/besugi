@@ -5,7 +5,6 @@ services:
     container_name: lighthouse-bn
     depends_on: 
       - besu
-      - keytool
     volumes:
       - ./lighthouse_data:/lighthouse_data
       - ./mnsf3-config:/config
