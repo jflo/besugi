@@ -24,4 +24,7 @@ services:
       --rpc-http-host=0.0.0.0
       --rpc-ws-host=0.0.0.0
       --p2p-host=$IP_ADDRESS
+      --metrics-enabled=true
+      --metrics-host="0.0.0.0"
+      --metrics-port=9545
     network_mode: host
