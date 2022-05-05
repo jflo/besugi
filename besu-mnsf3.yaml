@@ -18,6 +18,7 @@ services:
       --rpc-http-api=ADMIN,ETH,NET,DEBUG,TXPOOL,TRACE
       --p2p-enabled=true
       --Xmerge-support=true
+      --sync-mode=FAST
       --data-storage-format="BONSAI"
       --engine-host-allowlist="*"
       --rpc-http-host=0.0.0.0
