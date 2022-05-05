@@ -1,0 +1,21 @@
+version: "3.4"
+services:
+  lighthouse-bn:
+    image: sigp/lighthouse:latest-unstable
+    container_name: lighthouse-bn
+    depends_on: 
+      - besu
+      - keytool
+    volumes:
+      - ./lighthouse_data:/lighthouse_data
+      - ./mnsf3-config:/config
+    command: >
+      lighthouse --debug-level=info --datadir=/lighthouse_data
+      --testnet-dir=/config bn --disable-enr-auto-update --enr-address=$IP_ADDRESS
+      --enr-udp-port 9000 --enr-tcp-port 9000 --eth1 --boot-nodes=$ENR --http --http-port=4000
+      --merge --http-allow-sync-stalled --disable-packet-filter
+      --execution-endpoints=http://127.0.0.1:8550 --terminal-total-difficulty-override=$TOTAL_TERMINAL_DIFFICULTY
+      --http-address=0.0.0.0 --listen-address=0.0.0.0 --graffiti="besugi-lighthouse" --eth1-endpoints=http://127.0.0.1:8545
+      --validator-monitor-auto --suggested-fee-recipient="${COINBASE}"
+    network_mode: host
+

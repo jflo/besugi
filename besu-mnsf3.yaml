@@ -1,0 +1,26 @@
+version: "3.4"
+services:
+  besu:
+    image: hyperledger/besu:develop
+    container_name: besu
+    user: root
+    volumes:
+      - ./besu-fast-bonsai:/execution_data
+      - ./mnsf3-config:/config
+    command: >
+      --genesis-file="/config/besu_genesis.json"
+      --required-block="14699639=0x33c08518915716224cb2ad6364fc49cc0f941e33e233ae629a8baff5956c57ba"
+      --data-path="/execution_data"
+      --rpc-http-enabled=true
+      --rpc-ws-enabled=true
+      --host-allowlist="*"
+      --rpc-http-cors-origins="*"
+      --rpc-http-api=ADMIN,ETH,NET,DEBUG,TXPOOL,TRACE
+      --p2p-enabled=true
+      --Xmerge-support=true
+      --data-storage-format="BONSAI"
+      --engine-host-allowlist="*"
+      --rpc-http-host=0.0.0.0
+      --rpc-ws-host=0.0.0.0
+      --p2p-host=$IP_ADDRESS
+    network_mode: host
